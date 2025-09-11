@@ -1,5 +1,20 @@
 <!-- pokemon list -->
 <md-content style="background: none">
+    <!-- 筛选和排序控件 -->
+    <div class="filter-sort-controls" layout="row" layout-align="space-between center">
+        <div class="filter-controls" flex="60">
+            <md-select ng-model="ListCtrl.typeFilter" placeholder="按类型筛选" ng-change="ListCtrl.applyFilters()">
+                <md-option value="">全部类型</md-option>
+                <md-option ng-repeat="type in ListCtrl.pokemonTypes" value="{{type}}">{{type}}</md-option>
+            </md-select>
+        </div>
+        <div class="sort-controls" flex="40">
+            <md-select ng-model="ListCtrl.sortOption" placeholder="排序方式" ng-change="ListCtrl.applySorting()">
+                <md-option value="id">按编号</md-option>
+                <md-option value="name">按名称</md-option>
+            </md-select>
+        </div>
+    </div>
     <md-list class="pokemon-list" infinite-scroll='ListCtrl.loadMore()' infinite-scroll-distance='2'>
         <md-item bindonce ng-repeat="pokemon in ListCtrl.scrollPokemonList | orderBy: ListCtrl.sortById" ui-sref="justdex.pokemon({pokemon: pokemon.name})">
             <md-item-content layout="row">

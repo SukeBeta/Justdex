@@ -129,25 +129,42 @@ angular.module('pokemon', [
                 // ============================================================
                 //                     Evolution chain
                 // ============================================================
-                // get this pokemon's evolution chain
+                // 获取宝可梦的进化链
                 PokemonCtrl.pokemonEvolutionChain = PokemonCtrl.getPokemonEvolutionGroup(pokemon);
                 PokemonCtrl.pokemonEvolutionGroup = [];
-
-                // insert evolution chain's pokemon to a group;
-                var i = 0, len = PokemonCtrl.pokemonEvolutionChain.length;
-                for (; i < len; i++){
-                    //console.log(PokemonCtrl.pokemonEvolutionChain[i]);
-                    PokemonCtrl.getPokemonDetailById(PokemonCtrl.pokemonEvolutionChain[i])
-                        .then(function (result){
-                            if (result){
-                                for (var i = 0; i < PokemonCtrl.pokemonEvolutionChain.length; i++) {
-                                    if (PokemonCtrl.pokemonEvolutionChain[i] == result.pkdx_id) {
-                                        PokemonCtrl.pokemonEvolutionGroup[i] = result;
-                                        return true;
+                
+                // 如果本地数据中有进化链，使用本地数据
+                if (PokemonCtrl.pokemonEvolutionChain && PokemonCtrl.pokemonEvolutionChain.length > 0) {
+                    // 插入进化链中的宝可梦到组中
+                    var i = 0, len = PokemonCtrl.pokemonEvolutionChain.length;
+                    for (; i < len; i++){
+                        PokemonCtrl.getPokemonDetailById(PokemonCtrl.pokemonEvolutionChain[i])
+                            .then(function (result){
+                                if (result){
+                                    for (var i = 0; i < PokemonCtrl.pokemonEvolutionChain.length; i++) {
+                                        if (PokemonCtrl.pokemonEvolutionChain[i] == result.pkdx_id) {
+                                            PokemonCtrl.pokemonEvolutionGroup[i] = result;
+                                            return true;
+                                        }
                                     }
                                 }
-                            }
+                            });
+                    }
+                } else {
+                    // 如果本地数据中没有进化链，从API获取
+                    PokemonModel.getEvolutionChain(pokemon.pkdx_id).then(function(evolutionIds) {
+                        PokemonCtrl.pokemonEvolutionChain = evolutionIds;
+                        
+                        // 获取进化链中每个宝可梦的详细信息
+                        evolutionIds.forEach(function(id, index) {
+                            PokemonCtrl.getPokemonDetailById(id)
+                                .then(function(result) {
+                                    if (result) {
+                                        PokemonCtrl.pokemonEvolutionGroup[index] = result;
+                                    }
+                                });
                         });
+                    });
                 }
 
                 // filter null array item when ng repeat

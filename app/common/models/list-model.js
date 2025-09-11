@@ -1,14 +1,34 @@
 'use strict';
 
-angular.module('justdex.models.list', [])
-    .service('PokemonList', function ($http){
+angular.module('justdex.models.list', ['justdex.services.storage'])
+    .service('PokemonList', function ($http, StorageService){
         var model = this;
 
-        // return pokemon list
+        // 缓存键和过期时间
+        var POKEMON_LIST_CACHE_KEY = 'justdex_pokemon_list';
+        var ONE_WEEK = 7 * 24 * 60 * 60 * 1000; // 一周
+        
+        // 获取宝可梦列表
         model.getPokemonList = function (){
-            return $http.get('data/data.json').then(function (result){
-                return result.data;
-            });
+            // 检查缓存
+            var cachedData = StorageService.getItem(POKEMON_LIST_CACHE_KEY);
+            
+            if (cachedData) {
+                // 如果有缓存，直接返回
+                return Promise.resolve(cachedData);
+            } else {
+                // 如果没有缓存，从服务器获取
+                return $http.get('data/data.json')
+                    .then(function (result){
+                        // 缓存数据，设置一周过期
+                        StorageService.setItem(POKEMON_LIST_CACHE_KEY, result.data, ONE_WEEK);
+                        return result.data;
+                    })
+                    .catch(function(error) {
+                        console.error('获取宝可梦列表失败:', error);
+                        return [];
+                    });
+            }
         };
 
         // return pokemon name

@@ -11,6 +11,7 @@
     <!-- page css -->
     <link rel="stylesheet/less" href="assets/stylesheets/font.less">
     <link rel="stylesheet/less" href="assets/stylesheets/main.less">
+    <link rel="stylesheet/less" href="assets/stylesheets/filter-sort.less">
 
     <!-- vendor script -->
     <script src="vendor/jquery.min.js"></script>
@@ -31,11 +32,13 @@
     <script src="app/justdex.js"></script>
     <script src="app/list/list.js"></script>
     <script src="app/pokemon/pokemon.js"></script>
+    <script src="app/common/services/storage-service.js"></script>
     <script src="app/common/models/list-model.js"></script>
     <script src="app/common/models/pokemon-model.js"></script>
+    <script src="app/common/controllers/search-controller.js"></script>
 
 </head>
-<body>
+<body ng-controller="SearchController">
 <div class="wrapper">
     <!-- top bar -->
     <md-toolbar md-scroll-shrink class="topbar" layout="row" layout-align="start center">
@@ -44,8 +47,8 @@
         </div>
         <div class="topbar-search" flex>
             <div layout="row">
-                <input type="text" placeholder="Pokemon" ng-show="false"/>
-                <button></button>
+                <input type="text" placeholder="搜索宝可梦..." ng-model="searchQuery" ng-change="searchPokemon()"/>
+                <button ng-click="clearSearch()"></button>
             </div>
         </div>
     </md-toolbar><!-- end top bar-->

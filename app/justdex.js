@@ -5,7 +5,8 @@ var justdex = angular.module("justdexApp", [
 	'ngMaterial',
 	'pasvaz.bindonce',
 	'list',
-	'pokemon'
+	'pokemon',
+	'justdex.controllers.search'
 ])
 	.config(function($stateProvider,$urlRouterProvider) {
 		$stateProvider
