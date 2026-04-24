@@ -2,6 +2,7 @@ import { useState, useCallback } from 'react'
 import PokemonCard from '../components/PokemonCard'
 import TypeBadge from '../components/TypeBadge'
 import { usePokemonList, useFilteredPokemon } from '../hooks/usePokemon'
+import { useI18n } from '../contexts/LocaleContext'
 import { ALL_TYPES } from '../utils/typeColors'
 import { GENERATION_NAMES } from '../utils/constants'
 import type { PokemonType, SortOption } from '../types/pokemon'
@@ -9,6 +10,7 @@ import type { PokemonType, SortOption } from '../types/pokemon'
 const PAGE_SIZE = 40
 
 export default function Home() {
+  const { t } = useI18n()
   const { allPokemon, loading, error } = usePokemonList()
   const [search, setSearch] = useState('')
   const [typeFilter, setTypeFilter] = useState<PokemonType | null>(null)
@@ -27,7 +29,7 @@ export default function Home() {
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-screen">
-        <div className="text-on-surface-variant text-body-lg">Loading Pokédex...</div>
+        <div className="text-on-surface-variant text-body-lg">{t('loading')}</div>
       </div>
     )
   }
@@ -35,7 +37,7 @@ export default function Home() {
   if (error) {
     return (
       <div className="flex items-center justify-center min-h-screen">
-        <div className="text-error text-body-lg">Failed to load Pokédex data: {error}</div>
+        <div className="text-error text-body-lg">{t('loadError')}: {error}</div>
       </div>
     )
   }
@@ -68,7 +70,7 @@ export default function Home() {
           <input
             id="search-input-desktop"
             type="text"
-            placeholder="Search Pokémon..."
+            placeholder={t('search')}
             value={search}
             onChange={e => { setSearch(e.target.value); setVisibleCount(PAGE_SIZE) }}
             className="w-full h-10 pl-10 pr-4 bg-surface-container-lowest border border-outline-variant rounded-full text-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-primary shadow-card placeholder:text-[#ADB5BD]"
@@ -80,7 +82,7 @@ export default function Home() {
       <input
         id="search-input"
         type="text"
-        placeholder="Search Pokémon..."
+        placeholder={t('search')}
         value={search}
         onChange={e => { setSearch(e.target.value); setVisibleCount(PAGE_SIZE) }}
         className="md:hidden w-full h-10 px-4 mb-4 bg-surface-container-lowest border border-outline-variant rounded-full text-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-primary shadow-card placeholder:text-[#ADB5BD]"
@@ -98,7 +100,7 @@ export default function Home() {
                 : 'border border-outline text-on-surface hover:bg-surface-variant'
             }`}
           >
-            All Types
+            {t('allTypes')}
           </button>
           {ALL_TYPES.map(t => (
             <button
@@ -119,7 +121,7 @@ export default function Home() {
               onChange={e => { setGenFilter(Number(e.target.value) || null); setVisibleCount(PAGE_SIZE) }}
               className="appearance-none bg-surface-container-lowest border border-outline-variant rounded-lg pl-4 pr-10 py-2 text-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-primary shadow-sm cursor-pointer"
             >
-              <option value={0}>All Generations</option>
+              <option value={0}>{t('allGens')}</option>
               {GENERATION_NAMES.map((name, i) => (
                 <option key={i} value={i + 1}>{name}</option>
               ))}
@@ -134,8 +136,8 @@ export default function Home() {
               onChange={e => setSort(e.target.value as SortOption)}
               className="appearance-none bg-surface-container-lowest border border-outline-variant rounded-lg pl-4 pr-10 py-2 text-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-primary shadow-sm cursor-pointer"
             >
-              <option value="id">Sort: Number</option>
-              <option value="name">Sort: A-Z</option>
+              <option value="id">{t('sortNumber')}</option>
+              <option value="name">{t('sortName')}</option>
             </select>
             <span className="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-on-surface-variant text-[18px]">
               sort
@@ -146,7 +148,7 @@ export default function Home() {
 
       {/* Results count */}
       <p className="text-on-surface-variant text-sm mb-4">
-        {filtered.length} Pokémon found
+        {filtered.length} {t('found')}
       </p>
 
       {/* Grid */}
@@ -163,14 +165,14 @@ export default function Home() {
             onClick={loadMore}
             className="px-8 py-3 rounded-full bg-primary-container text-white font-semibold text-chip-text shadow-md hover:bg-primary transition-colors"
           >
-            Load More
+            {t('loadMore')}
           </button>
         </div>
       )}
 
       {filtered.length === 0 && !loading && (
         <div className="text-center py-20 text-on-surface-variant text-body-lg">
-          No Pokémon found matching your search.
+          {t('noResults')}
         </div>
       )}
     </main>

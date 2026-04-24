@@ -1,9 +1,12 @@
 import { Link } from 'react-router-dom'
 import type { PokemonListItem } from '../types/pokemon'
 import TypeBadge from './TypeBadge'
+import { useI18n } from '../contexts/LocaleContext'
 
 export default function PokemonCard({ pokemon }: { pokemon: PokemonListItem }) {
+  const { pn } = useI18n()
   const padId = `#${String(pokemon.id).padStart(3, '0')}`
+  const displayName = pn(pokemon.name)
 
   return (
     <Link
@@ -15,14 +18,14 @@ export default function PokemonCard({ pokemon }: { pokemon: PokemonListItem }) {
       </div>
       <div className="w-28 h-28 mb-3 -mt-14 z-10 relative">
         <img
-          alt={pokemon.name}
+          alt={displayName}
           src={pokemon.spriteUrl}
           className="w-full h-full object-contain drop-shadow-md group-hover:-translate-y-2 transition-transform duration-300"
           loading="lazy"
         />
       </div>
       <h2 className="text-h2 text-on-surface mb-2 text-center capitalize">
-        {pokemon.name}
+        {displayName}
       </h2>
       <div className="flex gap-2 justify-center flex-wrap">
         {pokemon.types.map(t => (
