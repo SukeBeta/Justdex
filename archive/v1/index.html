@@ -1,0 +1,64 @@
+<!DOCTYPE html/>
+<html ng-app="justdexApp">
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
+    <title>JustIndex</title>
+    <!-- vendor css -->
+    <!-- material css -->
+    <link rel="stylesheet" href="vendor/angular-material.min.css">
+    <link rel="stylesheet" href="assets/stylesheets/normalize.css">
+    <!-- page css -->
+    <link rel="stylesheet/less" href="assets/stylesheets/font.less">
+    <link rel="stylesheet/less" href="assets/stylesheets/main.less">
+    <link rel="stylesheet/less" href="assets/stylesheets/filter-sort.less">
+
+    <!-- vendor script -->
+    <script src="vendor/jquery.min.js"></script>
+    <script src="vendor/angular.min.js"></script>
+    <script src="vendor/angular-ui-router.min.js"></script>
+    <script src="vendor/angular-bindonce.min.js"></script>
+    <script src="vendor/angular-infinite-scroll.min.js"></script>
+    <script src="vendor/underscore-min.js"></script>
+
+    <!-- Angular Material Dependencies -->
+    <script src="vendor/hammer.min.js"></script>
+    <script src="vendor/angular-animate.min.js"></script>
+    <script src="vendor/angular-aria.min.js"></script>
+    <script src="vendor/angular-material.min.js"></script>
+
+    <!-- page script -->
+    <script src="vendor/less.min.js"></script>
+    <script src="app/justdex.js"></script>
+    <script src="app/list/list.js"></script>
+    <script src="app/pokemon/pokemon.js"></script>
+    <script src="app/common/services/storage-service.js"></script>
+    <script src="app/common/models/list-model.js"></script>
+    <script src="app/common/models/pokemon-model.js"></script>
+    <script src="app/common/controllers/search-controller.js"></script>
+
+</head>
+<body ng-controller="SearchController">
+<div class="wrapper">
+    <!-- top bar -->
+    <md-toolbar md-scroll-shrink class="topbar" layout="row" layout-align="start center">
+        <div class="topbar-logo" ui-sref="justdex.list({})">
+            <span>Justdex</span>
+        </div>
+        <div class="topbar-search" flex>
+            <div layout="row">
+                <input type="text" placeholder="搜索宝可梦..." ng-model="searchQuery" ng-change="searchPokemon()"/>
+                <button ng-click="clearSearch()"></button>
+            </div>
+        </div>
+    </md-toolbar><!-- end top bar-->
+
+    <!-- ui view -->
+    <div ui-view="list"></div>
+
+    <div ui-view="pokemon"></div>
+    <!-- end ui view -->
+</div>
+
+</body>
+</html>

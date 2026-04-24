@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Justdex - Pokédex</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+                "inverse-surface": "#293138",
+                "surface-bright": "#f6faff",
+                "inverse-primary": "#c6c4df",
+                "on-primary-fixed-variant": "#45455b",
+                "on-tertiary-fixed-variant": "#514627",
+                "on-surface": "#141d23",
+                "tertiary-fixed-dim": "#d5c59d",
+                "on-tertiary-container": "#493f20",
+                "surface-container-low": "#ecf5fe",
+                "secondary-fixed": "#e1e3e4",
+                "primary-fixed": "#e2e0fc",
+                "on-secondary-container": "#626566",
+                "error-container": "#ffdad6",
+                "surface-dim": "#d2dbe4",
+                "on-primary-container": "#83829b",
+                "error": "#ba1a1a",
+                "primary-fixed-dim": "#c6c4df",
+                "on-error-container": "#93000a",
+                "on-error": "#ffffff",
+                "surface-container-highest": "#dbe4ed",
+                "on-surface-variant": "#47464c",
+                "on-tertiary-fixed": "#231b02",
+                "outline": "#78767d",
+                "on-background": "#141d23",
+                "on-secondary-fixed": "#191c1d",
+                "surface-tint": "#5d5c74",
+                "tertiary-fixed": "#f2e1b7",
+                "secondary-container": "#e1e3e4",
+                "on-primary-fixed": "#1a1a2e",
+                "on-secondary-fixed-variant": "#454748",
+                "primary-container": "#1a1a2e",
+                "primary": "#00000b",
+                "on-secondary": "#ffffff",
+                "surface-container": "#e6eff8",
+                "surface-container-high": "#e0e9f2",
+                "secondary-fixed-dim": "#c5c7c8",
+                "background": "#f6faff",
+                "secondary": "#5c5f60",
+                "surface-container-lowest": "#ffffff",
+                "tertiary": "#695d3c",
+                "surface-variant": "#dbe4ed",
+                "on-tertiary": "#ffffff",
+                "surface": "#f6faff",
+                "tertiary-container": "#b9aa83",
+                "inverse-on-surface": "#e9f2fb",
+                "on-primary": "#ffffff",
+                "outline-variant": "#c8c5cd"
+        },
+        "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+        },
+        "spacing": {
+                "stack-md": "16px",
+                "stack-lg": "32px",
+                "container-max": "1280px",
+                "gutter": "24px",
+                "unit": "4px",
+                "margin-mobile": "16px",
+                "stack-sm": "8px",
+                "section-gap": "64px"
+        },
+        "fontFamily": {
+                "body-lg": [
+                        "Inter"
+                ],
+                "chip-text": [
+                        "Inter"
+                ],
+                "h2": [
+                        "Inter"
+                ],
+                "body-md": [
+                        "Inter"
+                ],
+                "label-caps": [
+                        "Inter"
+                ],
+                "h1": [
+                        "Inter"
+                ]
+        },
+        "fontSize": {
+                "body-lg": [
+                        "18px",
+                        {
+                                "lineHeight": "1.6",
+                                "fontWeight": "400"
+                        }
+                ],
+                "chip-text": [
+                        "14px",
+                        {
+                                "lineHeight": "1",
+                                "fontWeight": "600"
+                        }
+                ],
+                "h2": [
+                        "24px",
+                        {
+                                "lineHeight": "1.3",
+                                "letterSpacing": "-0.01em",
+                                "fontWeight": "600"
+                        }
+                ],
+                "body-md": [
+                        "16px",
+                        {
+                                "lineHeight": "1.6",
+                                "fontWeight": "400"
+                        }
+                ],
+                "label-caps": [
+                        "12px",
+                        {
+                                "lineHeight": "1",
+                                "letterSpacing": "0.05em",
+                                "fontWeight": "700"
+                        }
+                ],
+                "h1": [
+                        "40px",
+                        {
+                                "lineHeight": "1.2",
+                                "letterSpacing": "-0.02em",
+                                "fontWeight": "700"
+                        }
+                ]
+        }
+},
+    },
+  }
+</script>
+<style>
+    .no-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+    .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+</style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface font-body-md antialiased min-h-screen pt-20 pb-24">
+<!-- TopAppBar -->
+<nav class="fixed top-0 w-full z-50 bg-white/80 dark:bg-slate-950/80 backdrop-blur-md shadow-sm dark:shadow-none flex justify-between items-center px-6 py-3">
+<div class="text-xl font-black tracking-tighter text-slate-900 dark:text-white">Justdex</div>
+<div class="flex items-center gap-4 text-slate-900 dark:text-slate-50 font-inter antialiased tracking-tight uppercase text-[10px] font-semibold">
+<span class="material-symbols-outlined text-[24px] cursor-pointer hover:text-slate-600 dark:hover:text-slate-300 transition-colors active:scale-95 duration-200">search</span>
+<span class="material-symbols-outlined text-[24px] cursor-pointer hover:text-slate-600 dark:hover:text-slate-300 transition-colors active:scale-95 duration-200">tune</span>
+</div>
+</nav>
+<main class="px-margin-mobile">
+<!-- Filter Chips -->
+<div class="flex overflow-x-auto gap-2 py-2 -mx-margin-mobile px-margin-mobile no-scrollbar mb-6">
+<button class="px-5 py-2 rounded-full font-chip-text text-chip-text bg-primary-container text-on-primary whitespace-nowrap shadow-sm">All</button>
+<button class="px-5 py-2 rounded-full font-chip-text text-chip-text border border-outline-variant text-on-surface whitespace-nowrap bg-surface-container-lowest">Grass</button>
+<button class="px-5 py-2 rounded-full font-chip-text text-chip-text border border-outline-variant text-on-surface whitespace-nowrap bg-surface-container-lowest">Fire</button>
+<button class="px-5 py-2 rounded-full font-chip-text text-chip-text border border-outline-variant text-on-surface whitespace-nowrap bg-surface-container-lowest">Water</button>
+<button class="px-5 py-2 rounded-full font-chip-text text-chip-text border border-outline-variant text-on-surface whitespace-nowrap bg-surface-container-lowest">Electric</button>
+<button class="px-5 py-2 rounded-full font-chip-text text-chip-text border border-outline-variant text-on-surface whitespace-nowrap bg-surface-container-lowest">Bug</button>
+</div>
+<!-- Pokedex Grid -->
+<div class="grid grid-cols-2 gap-x-4 gap-y-12 mt-10">
+<!-- Card 1 -->
+<article class="relative bg-surface-container-lowest rounded-[16px] shadow-[0_4px_12px_rgba(0,0,0,0.05)] flex flex-col items-center p-4 pt-12 pb-5">
+<img alt="Bulbasaur" class="absolute -top-10 w-28 h-28 object-contain drop-shadow-[0_8px_16px_rgba(0,0,0,0.15)] pointer-events-none" data-alt="Small green dinosaur-like creature with a plant bulb on its back standing in soft studio lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuARP6QJ0-8GEB2eNCBVUuOwiYDo70l1cpw8_nOC27-qqCZd4JQWpB2bYjNvfrTxwbGH2NzZR_DbB6e2pBcPT7KcAZCOIbD1dNzIiuht1YhNQd5B5uH-bywjx761_IqhRGvLED-Ly88lPJIKYvA9VeAi3-0W9a8aVl2_Lvhm5cFc4p-QM1C3lusY3hedrPVySPFDt84EJgcad_r6VQBsdZOhvCVpWXKd2Ak3TyT1tTzRRIvTrF122_ip7xKa5CGTJhhF_KyfVIfJGQ"/>
+<span class="font-label-caps text-label-caps text-on-surface-variant mt-1">#001</span>
+<h2 class="font-body-md text-body-md font-bold text-on-surface mt-0.5">Bulbasaur</h2>
+<div class="flex gap-1.5 mt-2.5">
+<span class="px-2.5 py-1 rounded-full bg-tertiary text-on-tertiary font-label-caps text-[9px] uppercase tracking-wider">Grass</span>
+<span class="px-2.5 py-1 rounded-full bg-primary-fixed-dim text-on-surface font-label-caps text-[9px] uppercase tracking-wider">Poison</span>
+</div>
+</article>
+<!-- Card 2 -->
+<article class="relative bg-surface-container-lowest rounded-[16px] shadow-[0_4px_12px_rgba(0,0,0,0.05)] flex flex-col items-center p-4 pt-12 pb-5">
+<img alt="Charmander" class="absolute -top-10 w-28 h-28 object-contain drop-shadow-[0_8px_16px_rgba(0,0,0,0.15)] pointer-events-none" data-alt="Small orange lizard creature with a flame tipped tail sitting in minimal bright studio environment" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDi8yUb6KIjah-whz89PQFnF6BGOGxyOhGqQOqFH4B4C6M0KIkc528Rk1BTeVb9TjbnJyP7_Fo77jfau_6oV33z-GUSoTLwmEMKtWSTLwUykDpXkg8_y6lOBJp_T88-2mMWV4_ebt7LIkz8eBKhGh7mC9VAfm-eqez9xFolVv4IOsZuUEAUvTuSTRaC1uuqJeGjrUfV8zwfGFfRtD1HL-T-tdMw9ptMVaHjZxk8WwMUG5hPqJzgmOVVoRLHO9E8YtmDOfNA_InoFA"/>
+<span class="font-label-caps text-label-caps text-on-surface-variant mt-1">#004</span>
+<h2 class="font-body-md text-body-md font-bold text-on-surface mt-0.5">Charmander</h2>
+<div class="flex gap-1.5 mt-2.5">
+<span class="px-2.5 py-1 rounded-full bg-error text-on-error font-label-caps text-[9px] uppercase tracking-wider">Fire</span>
+</div>
+</article>
+<!-- Card 3 -->
+<article class="relative bg-surface-container-lowest rounded-[16px] shadow-[0_4px_12px_rgba(0,0,0,0.05)] flex flex-col items-center p-4 pt-12 pb-5">
+<img alt="Squirtle" class="absolute -top-10 w-28 h-28 object-contain drop-shadow-[0_8px_16px_rgba(0,0,0,0.15)] pointer-events-none" data-alt="Small light blue turtle creature standing confidently on clean white background with soft shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDEveyQH9b8LlUNe33L1KrSBSkGjWq46c2Bd92OYaQTVRIERFrJIu0LgwKyD9ya0MfwEJk3xVReauy-UP_r915a0CWLjUd1vUsoPgKT0dkRjx5qksKFMgazM3LiFlgubTCq8U07XimIxRwjxkJHRvJDuFyb40anCDGkyjgEfm97oDL84fqA9EZzxTgXo7gqYxpLoZegMhs866vSx4qRjgrLaXUHPV9HzPaisknQco-UvlzQ-WqqW7YvmR6JC9ED-N6R_pLdu-Lxpg"/>
+<span class="font-label-caps text-label-caps text-on-surface-variant mt-1">#007</span>
+<h2 class="font-body-md text-body-md font-bold text-on-surface mt-0.5">Squirtle</h2>
+<div class="flex gap-1.5 mt-2.5">
+<span class="px-2.5 py-1 rounded-full bg-primary-container text-on-primary font-label-caps text-[9px] uppercase tracking-wider">Water</span>
+</div>
+</article>
+<!-- Card 4 -->
+<article class="relative bg-surface-container-lowest rounded-[16px] shadow-[0_4px_12px_rgba(0,0,0,0.05)] flex flex-col items-center p-4 pt-12 pb-5">
+<img alt="Pikachu" class="absolute -top-10 w-28 h-28 object-contain drop-shadow-[0_8px_16px_rgba(0,0,0,0.15)] pointer-events-none" data-alt="Small yellow rodent creature with red cheeks and lightning bolt tail in bright energetic lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAHuLU9d5zk4ULrOSzfWJ08H8Dt1WiPDCWscarVVQRDux6sYD8SMLx1EIcTD3Xe-LfKoYzjgxxEjyaUuMUeeJEken6VcFuSZOt1KVvjjcwO03jEQxmTysQkfxt9PvQVMr8ITK2yrVNJ85e9iBwAQ35W4wdGnZ3aCccG9e2_-blZJYfVl_mKDVo_mPhbTapO38H1b52JZtvbuvbKvASortmy12SA6KxlpUpm46XAwcUGq3aol5O1FhfpjpJXdOQJSfljNH4C8xsMnw"/>
+<span class="font-label-caps text-label-caps text-on-surface-variant mt-1">#025</span>
+<h2 class="font-body-md text-body-md font-bold text-on-surface mt-0.5">Pikachu</h2>
+<div class="flex gap-1.5 mt-2.5">
+<span class="px-2.5 py-1 rounded-full bg-tertiary-fixed text-on-tertiary-fixed font-label-caps text-[9px] uppercase tracking-wider">Electric</span>
+</div>
+</article>
+<!-- Card 5 -->
+<article class="relative bg-surface-container-lowest rounded-[16px] shadow-[0_4px_12px_rgba(0,0,0,0.05)] flex flex-col items-center p-4 pt-12 pb-5">
+<img alt="Rattata" class="absolute -top-10 w-28 h-28 object-contain drop-shadow-[0_8px_16px_rgba(0,0,0,0.15)] pointer-events-none" data-alt="Small purple rodent creature with large ears standing on smooth grey surface studio lit" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDanB_vs04eUrb6Umyv6ZKlrzaWGDFUUXD22ZM1UCA6vKRl26hxsPJY-SuXQcBSTudp3rozVugBTqbEVYV1lrBw2NcYqCVTIl8hSP94UhYCeKY5o8v5vSzwd4L23wFjiw8KVQ9ll6_3NEFb2cPHeSBPzpr8iHmdyGq1I6xXR5XjbH43xjpjhtxsJKfR2Rcd2kQ3ZjU-gWZUgvD9fa-JNg8VxQF0Ti0D5Rkbe_c3xnl_grIdES3YQJ2_s3Hvfy1MDf7QFGH5zjB5rQ"/>
+<span class="font-label-caps text-label-caps text-on-surface-variant mt-1">#019</span>
+<h2 class="font-body-md text-body-md font-bold text-on-surface mt-0.5">Rattata</h2>
+<div class="flex gap-1.5 mt-2.5">
+<span class="px-2.5 py-1 rounded-full bg-surface-variant text-on-surface-variant font-label-caps text-[9px] uppercase tracking-wider">Normal</span>
+</div>
+</article>
+<!-- Card 6 -->
+<article class="relative bg-surface-container-lowest rounded-[16px] shadow-[0_4px_12px_rgba(0,0,0,0.05)] flex flex-col items-center p-4 pt-12 pb-5">
+<img alt="Jigglypuff" class="absolute -top-10 w-28 h-28 object-contain drop-shadow-[0_8px_16px_rgba(0,0,0,0.15)] pointer-events-none" data-alt="Small pink round creature hovering slightly in minimalist white space with gentle overhead lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAnczQTQiKOhM9CwiqHpl0-ObBotlQ2jgMIyjT1AMbI6FKKpOVXFDM4coeInDElHGL78XEBuhyPKQNFDTq05YEGQPdRA-raiu6b6uuMIL60Ovq5s8Oefshd4IzcH0jnoI_wTm944o7wPV1UdAo6LzwrvAqkIKNrfTyNSgIK-nCqxvAmKWfuku26_2pwHNAxjQdsV2zWszabUdfU_wgf6p8b2DAQPIre93j-Rxl7F4P8LFcINW4LgbgkLj1T8_0b4bhyTpW1FnSlrQ"/>
+<span class="font-label-caps text-label-caps text-on-surface-variant mt-1">#039</span>
+<h2 class="font-body-md text-body-md font-bold text-on-surface mt-0.5">Jigglypuff</h2>
+<div class="flex gap-1.5 mt-2.5">
+<span class="px-2.5 py-1 rounded-full bg-surface-variant text-on-surface-variant font-label-caps text-[9px] uppercase tracking-wider">Normal</span>
+<span class="px-2.5 py-1 rounded-full bg-error-container text-on-error-container font-label-caps text-[9px] uppercase tracking-wider">Fairy</span>
+</div>
+</article>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full z-50 rounded-t-2xl bg-white dark:bg-slate-900 shadow-[0_-4px_12px_rgba(0,0,0,0.05)] flex justify-around items-center h-16 px-4 pb-safe md:hidden">
+<button class="flex flex-col items-center justify-center text-slate-900 dark:text-white scale-110 active:scale-90 transition-transform duration-150">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">capture</span>
+<span class="font-inter text-[10px] font-medium tracking-wide mt-1">Pokedex</span>
+</button>
+<button class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-600 hover:text-slate-600 dark:hover:text-slate-300 active:scale-90 transition-transform duration-150">
+<span class="material-symbols-outlined">groups</span>
+<span class="font-inter text-[10px] font-medium tracking-wide mt-1">Teams</span>
+</button>
+<button class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-600 hover:text-slate-600 dark:hover:text-slate-300 active:scale-90 transition-transform duration-150">
+<span class="material-symbols-outlined">map</span>
+<span class="font-inter text-[10px] font-medium tracking-wide mt-1">Regions</span>
+</button>
+<button class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-600 hover:text-slate-600 dark:hover:text-slate-300 active:scale-90 transition-transform duration-150">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-inter text-[10px] font-medium tracking-wide mt-1">Settings</span>
+</button>
+</nav>
+</body></html>

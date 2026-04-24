@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Justdex - Pokémon Detail</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-surface": "#293138",
+                        "surface-bright": "#f6faff",
+                        "inverse-primary": "#c6c4df",
+                        "on-primary-fixed-variant": "#45455b",
+                        "on-tertiary-fixed-variant": "#514627",
+                        "on-surface": "#141d23",
+                        "tertiary-fixed-dim": "#d5c59d",
+                        "on-tertiary-container": "#493f20",
+                        "surface-container-low": "#ecf5fe",
+                        "secondary-fixed": "#e1e3e4",
+                        "primary-fixed": "#e2e0fc",
+                        "on-secondary-container": "#626566",
+                        "error-container": "#ffdad6",
+                        "surface-dim": "#d2dbe4",
+                        "on-primary-container": "#83829b",
+                        "error": "#ba1a1a",
+                        "primary-fixed-dim": "#c6c4df",
+                        "on-error-container": "#93000a",
+                        "on-error": "#ffffff",
+                        "surface-container-highest": "#dbe4ed",
+                        "on-surface-variant": "#47464c",
+                        "on-tertiary-fixed": "#231b02",
+                        "outline": "#78767d",
+                        "on-background": "#141d23",
+                        "on-secondary-fixed": "#191c1d",
+                        "surface-tint": "#5d5c74",
+                        "tertiary-fixed": "#f2e1b7",
+                        "secondary-container": "#e1e3e4",
+                        "on-primary-fixed": "#1a1a2e",
+                        "on-secondary-fixed-variant": "#454748",
+                        "primary-container": "#1a1a2e",
+                        "primary": "#00000b",
+                        "on-secondary": "#ffffff",
+                        "surface-container": "#e6eff8",
+                        "surface-container-high": "#e0e9f2",
+                        "secondary-fixed-dim": "#c5c7c8",
+                        "background": "#f6faff",
+                        "secondary": "#5c5f60",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary": "#695d3c",
+                        "surface-variant": "#dbe4ed",
+                        "on-tertiary": "#ffffff",
+                        "surface": "#f6faff",
+                        "tertiary-container": "#b9aa83",
+                        "inverse-on-surface": "#e9f2fb",
+                        "on-primary": "#ffffff",
+                        "outline-variant": "#c8c5cd"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-md": "16px",
+                        "stack-lg": "32px",
+                        "container-max": "1280px",
+                        "gutter": "24px",
+                        "unit": "4px",
+                        "margin-mobile": "16px",
+                        "stack-sm": "8px",
+                        "section-gap": "64px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "chip-text": ["Inter"],
+                        "h2": ["Inter"],
+                        "body-md": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "h1": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "chip-text": ["14px", { "lineHeight": "1", "fontWeight": "600" }],
+                        "h2": ["24px", { "lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "label-caps": ["12px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "h1": ["40px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .type-water-bg { background-color: #6890F0; }
+        .type-water-text { color: #6890F0; }
+        .type-flying-bg { background-color: #A890F0; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-md antialiased min-h-screen pb-safe">
+<!-- Top Navigation (Contextual Back) -->
+<header class="fixed top-0 w-full z-50 px-6 py-3 flex justify-between items-center bg-transparent">
+<a aria-label="Go back" class="w-10 h-10 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white active:scale-95 duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">arrow_back</span>
+</a>
+<button aria-label="Favorite" class="w-10 h-10 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white active:scale-95 duration-200">
+<span class="material-symbols-outlined">favorite</span>
+</button>
+</header>
+<main class="w-full max-w-container-max mx-auto md:px-gutter">
+<!-- Hero Section (Tinted to Type: Water) -->
+<section class="relative pt-24 pb-12 px-6 rounded-b-[48px] type-water-bg overflow-hidden md:rounded-t-[48px] md:mt-6 shadow-md">
+<!-- Decorative Background Elements -->
+<div class="absolute top-0 right-0 -mr-24 -mt-24 w-96 h-96 rounded-full bg-white/10 blur-3xl"></div>
+<div class="absolute bottom-0 left-0 -ml-12 -mb-12 w-64 h-64 rounded-full bg-black/5 blur-2xl"></div>
+<div class="relative z-10 flex flex-col items-center">
+<div class="w-full flex justify-between items-end mb-4">
+<div>
+<h1 class="font-h1 text-h1 text-white">Blastoise</h1>
+<span class="font-label-caps text-label-caps text-white/80">#009</span>
+</div>
+<div class="flex gap-2">
+<span class="px-3 py-1 rounded-full bg-white/20 backdrop-blur-sm font-chip-text text-chip-text text-white border border-white/30">Water</span>
+</div>
+</div>
+<div class="relative w-64 h-64 mt-4 mb-[-64px]">
+<img alt="Blastoise" class="w-full h-full object-contain drop-shadow-2xl z-20 relative mix-blend-normal" data-alt="3d render of a large blue turtle-like creature with water cannons on its shell, dynamic pose, bright lighting, clean studio background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAE4pvYyNLr3TE7X0GMkAOoivrcfn6quXkJIx7TANxMOgLYqGCr2qg7cqRY6tFBxa0qlf2rXl15EB2d4ET6DfxNvuyjyNR0KWYJ7PtbuL5ohcqFy-8yI0271HVILqo7rIzaDXYuXSoSRLz4Cde_-7VSboaCc6uSoEPGCV4kQlkLcfeQwg_5L5tZBrKdSUw4qZWUYwo6Yz92TldAMFjodaiDrdKOaEQLPSCp1dWTPt9Z2HH4b9OmRMKsc2EpCPDQeqFikybGbbQxpQ"/>
+</div>
+</div>
+</section>
+<!-- Content Area -->
+<section class="px-6 pt-24 pb-section-gap">
+<!-- About Info Cards (Bento style) -->
+<div class="grid grid-cols-2 gap-4 mb-stack-lg">
+<div class="bg-surface-container rounded-xl p-4 shadow-sm flex flex-col justify-center items-center">
+<div class="flex items-center gap-2 mb-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px]">scale</span>
+<span class="font-label-caps text-label-caps">Weight</span>
+</div>
+<span class="font-h2 text-h2 text-on-surface">85.5 kg</span>
+</div>
+<div class="bg-surface-container rounded-xl p-4 shadow-sm flex flex-col justify-center items-center">
+<div class="flex items-center gap-2 mb-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px]">height</span>
+<span class="font-label-caps text-label-caps">Height</span>
+</div>
+<span class="font-h2 text-h2 text-on-surface">1.6 m</span>
+</div>
+<div class="col-span-2 bg-surface-container rounded-xl p-4 shadow-sm">
+<div class="flex items-center gap-2 mb-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px]">description</span>
+<span class="font-label-caps text-label-caps">Description</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface">
+                        It crushes its foe under its heavy body to cause fainting. In a pinch, it will withdraw inside its shell.
+                    </p>
+</div>
+</div>
+<!-- Base Stats -->
+<div class="mb-stack-lg">
+<h3 class="font-h2 text-h2 text-on-surface mb-stack-md">Base Stats</h3>
+<div class="bg-surface-container-lowest rounded-xl p-6 shadow-sm border border-outline-variant/30 space-y-4">
+<!-- Stat Row -->
+<div class="flex items-center text-sm">
+<span class="w-12 font-label-caps text-label-caps text-on-surface-variant">HP</span>
+<span class="w-8 font-chip-text text-chip-text text-on-surface text-right pr-3 border-r border-outline-variant/50">79</span>
+<div class="flex-1 ml-3 h-2 bg-surface-variant rounded-full overflow-hidden">
+<div class="h-full type-water-bg rounded-full" style="width: 45%;"></div>
+</div>
+</div>
+<!-- Stat Row -->
+<div class="flex items-center text-sm">
+<span class="w-12 font-label-caps text-label-caps text-on-surface-variant">ATK</span>
+<span class="w-8 font-chip-text text-chip-text text-on-surface text-right pr-3 border-r border-outline-variant/50">83</span>
+<div class="flex-1 ml-3 h-2 bg-surface-variant rounded-full overflow-hidden">
+<div class="h-full type-water-bg rounded-full" style="width: 50%;"></div>
+</div>
+</div>
+<!-- Stat Row -->
+<div class="flex items-center text-sm">
+<span class="w-12 font-label-caps text-label-caps text-on-surface-variant">DEF</span>
+<span class="w-8 font-chip-text text-chip-text text-on-surface text-right pr-3 border-r border-outline-variant/50">100</span>
+<div class="flex-1 ml-3 h-2 bg-surface-variant rounded-full overflow-hidden">
+<div class="h-full type-water-bg rounded-full" style="width: 65%;"></div>
+</div>
+</div>
+<!-- Stat Row -->
+<div class="flex items-center text-sm">
+<span class="w-12 font-label-caps text-label-caps text-on-surface-variant">SATK</span>
+<span class="w-8 font-chip-text text-chip-text text-on-surface text-right pr-3 border-r border-outline-variant/50">85</span>
+<div class="flex-1 ml-3 h-2 bg-surface-variant rounded-full overflow-hidden">
+<div class="h-full type-water-bg rounded-full" style="width: 55%;"></div>
+</div>
+</div>
+<!-- Stat Row -->
+<div class="flex items-center text-sm">
+<span class="w-12 font-label-caps text-label-caps text-on-surface-variant">SDEF</span>
+<span class="w-8 font-chip-text text-chip-text text-on-surface text-right pr-3 border-r border-outline-variant/50">105</span>
+<div class="flex-1 ml-3 h-2 bg-surface-variant rounded-full overflow-hidden">
+<div class="h-full type-water-bg rounded-full" style="width: 70%;"></div>
+</div>
+</div>
+<!-- Stat Row -->
+<div class="flex items-center text-sm">
+<span class="w-12 font-label-caps text-label-caps text-on-surface-variant">SPD</span>
+<span class="w-8 font-chip-text text-chip-text text-on-surface text-right pr-3 border-r border-outline-variant/50">78</span>
+<div class="flex-1 ml-3 h-2 bg-surface-variant rounded-full overflow-hidden">
+<div class="h-full type-water-bg rounded-full" style="width: 45%;"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Evolution Chain -->
+<div>
+<h3 class="font-h2 text-h2 text-on-surface mb-stack-md">Evolution</h3>
+<div class="bg-surface-container-lowest rounded-xl p-6 shadow-sm border border-outline-variant/30 flex flex-col items-center gap-6">
+<!-- Stage 1 -->
+<div class="flex items-center justify-between w-full max-w-[280px]">
+<div class="relative w-20 h-20 bg-surface-container rounded-full flex items-center justify-center p-2">
+<img alt="Squirtle" class="w-full h-full object-contain" data-alt="small cute blue turtle pokemon standing on two legs, studio lighting, isolated" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBDSaUj5gATBozp01Ur_2urKZoHSu4hIGT2eAydWS5w68SK9TFvqHo8oFmEQ9z8tdF75DJa8mw7WSuDNAz4j991H-DJLCd_r3sZZKIm4cUqp7Hyax2-7qeonVz7XnWF9DRpN9s_0okI5GtTk9WYOa-0ps5YiNY_tijFervK0ZLi4qhaAlbx_GbKnIhXawIWtsca6QjZqg6-yS4hfbn-bCQrNQxyo-5PpM-KpCoTI8YJmntYk2U0nHYQmFxPuBHE8NT8TaDLpKxlPA"/>
+</div>
+<div class="flex flex-col items-center">
+<span class="material-symbols-outlined text-outline">arrow_downward</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant mt-1">Lvl 16</span>
+</div>
+</div>
+<!-- Stage 2 -->
+<div class="flex items-center justify-between w-full max-w-[280px]">
+<div class="relative w-24 h-24 bg-surface-container rounded-full flex items-center justify-center p-2">
+<img alt="Wartortle" class="w-full h-full object-contain" data-alt="medium blue turtle pokemon with fluffy tail and ears, studio lighting, isolated" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAKLet75GEhwTb-JaoJU-WApmXOA4618mX47KgVgxYUJ0amnWaWSspk4Myp7r6H6B7q5I6tIXWoJDe1tPlpA4AmuIpySBTVrCK10z7PimFwA9dSYml4f0zrX4QEtJtfhwCdwkIEyoIjkXLvjMsjNf49gBgT68xyIf7r24tOYmmn6pTL3GBvQXCwM4dZlW43KCM2-WM37j23VzfzUsjkkAJuJMZW1rBpg6FycOjKCm98yCLiJawgxaqHH2je1zeY1HG-1NSKP0xOkw"/>
+</div>
+<div class="flex flex-col items-center">
+<span class="material-symbols-outlined text-outline">arrow_downward</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant mt-1">Lvl 36</span>
+</div>
+</div>
+<!-- Stage 3 (Current) -->
+<div class="flex items-center justify-between w-full max-w-[280px]">
+<div class="relative w-28 h-28 bg-surface-container rounded-full flex items-center justify-center p-2 ring-4 ring-primary-fixed/50 ring-offset-2">
+<img alt="Blastoise" class="w-full h-full object-contain" data-alt="large blue turtle pokemon with water cannons, studio lighting, isolated" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBAzAREDedKNjDLB58xYuHkoqANTNbVvAfbnvQsxu9P4_val-mdvv56W8gvpc_KbQtJgSo8TE2eC47zXcVhflM6BxD5XUtmpAydK7y4n8cwUWH_xNiygZzDzq4C5-HVYYtdzCshUnoQ2tRtAZMDn-o9foO8MHQAK8GvlZyr6lMK_siKfe21ytT--FWPdNOzd24sGVncHyCnbzvaQFXqTCC-_pZRZLlvunqTIciFQq7B8T5j6y4r7bY8wYmOIbe4f-VBhEEH4oZ66A"/>
+</div>
+<div class="flex flex-col items-center opacity-0 pointer-events-none">
+<span class="material-symbols-outlined">arrow_downward</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+</body></html>

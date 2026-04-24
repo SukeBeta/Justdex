@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Justdex - Pokédex</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-surface": "#293138",
+                        "surface-bright": "#f6faff",
+                        "inverse-primary": "#c6c4df",
+                        "on-primary-fixed-variant": "#45455b",
+                        "on-tertiary-fixed-variant": "#514627",
+                        "on-surface": "#141d23",
+                        "tertiary-fixed-dim": "#d5c59d",
+                        "on-tertiary-container": "#493f20",
+                        "surface-container-low": "#ecf5fe",
+                        "secondary-fixed": "#e1e3e4",
+                        "primary-fixed": "#e2e0fc",
+                        "on-secondary-container": "#626566",
+                        "error-container": "#ffdad6",
+                        "surface-dim": "#d2dbe4",
+                        "on-primary-container": "#83829b",
+                        "error": "#ba1a1a",
+                        "primary-fixed-dim": "#c6c4df",
+                        "on-error-container": "#93000a",
+                        "on-error": "#ffffff",
+                        "surface-container-highest": "#dbe4ed",
+                        "on-surface-variant": "#47464c",
+                        "on-tertiary-fixed": "#231b02",
+                        "outline": "#78767d",
+                        "on-background": "#141d23",
+                        "on-secondary-fixed": "#191c1d",
+                        "surface-tint": "#5d5c74",
+                        "tertiary-fixed": "#f2e1b7",
+                        "secondary-container": "#e1e3e4",
+                        "on-primary-fixed": "#1a1a2e",
+                        "on-secondary-fixed-variant": "#454748",
+                        "primary-container": "#1a1a2e",
+                        "primary": "#00000b",
+                        "on-secondary": "#ffffff",
+                        "surface-container": "#e6eff8",
+                        "surface-container-high": "#e0e9f2",
+                        "secondary-fixed-dim": "#c5c7c8",
+                        "background": "#f6faff",
+                        "secondary": "#5c5f60",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary": "#695d3c",
+                        "surface-variant": "#dbe4ed",
+                        "on-tertiary": "#ffffff",
+                        "surface": "#f6faff",
+                        "tertiary-container": "#b9aa83",
+                        "inverse-on-surface": "#e9f2fb",
+                        "on-primary": "#ffffff",
+                        "outline-variant": "#c8c5cd"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px",
+                        "2xl": "1rem"
+                    },
+                    "spacing": {
+                        "stack-md": "16px",
+                        "stack-lg": "32px",
+                        "container-max": "1280px",
+                        "gutter": "24px",
+                        "unit": "4px",
+                        "margin-mobile": "16px",
+                        "stack-sm": "8px",
+                        "section-gap": "64px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "chip-text": ["Inter"],
+                        "h2": ["Inter"],
+                        "body-md": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "h1": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "chip-text": ["14px", { "lineHeight": "1", "fontWeight": "600" }],
+                        "h2": ["24px", { "lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "label-caps": ["12px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "h1": ["40px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .icon-fill {
+            font-variation-settings: 'FILL' 1;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen pt-20 pb-safe">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-white/80 dark:bg-slate-950/80 backdrop-blur-md text-slate-900 dark:text-slate-50 font-inter antialiased tracking-tight uppercase text-[10px] font-semibold border-b border-slate-100 dark:border-slate-800 shadow-sm dark:shadow-none hidden md:flex justify-between items-center px-6 py-3">
+<div class="flex items-center gap-gutter">
+<div class="text-xl font-black tracking-tighter text-slate-900 dark:text-white">Justdex</div>
+<!-- Search Bar -->
+<div class="relative ml-8">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline-variant">search</span>
+<input class="w-80 h-10 pl-10 pr-4 bg-surface-container-lowest border border-outline-variant rounded-full text-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-primary shadow-[0_4px_12px_rgba(0,0,0,0.05)] placeholder:text-[#ADB5BD]" placeholder="Search Pokémon..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-stack-md">
+<nav class="flex items-center gap-stack-md">
+<a class="text-slate-900 dark:text-white border-b-2 border-slate-900 dark:border-white pb-1 active:scale-95 duration-200" href="#">Pokedex</a>
+<a class="text-slate-400 dark:text-slate-500 pb-1 hover:text-slate-600 dark:hover:text-slate-300 transition-colors active:scale-95 duration-200" href="#">Teams</a>
+<a class="text-slate-400 dark:text-slate-500 pb-1 hover:text-slate-600 dark:hover:text-slate-300 transition-colors active:scale-95 duration-200" href="#">Regions</a>
+</nav>
+<div class="h-4 w-px bg-outline-variant mx-2"></div>
+<button aria-label="tune" class="hover:text-slate-600 dark:hover:text-slate-300 transition-colors active:scale-95 duration-200">
+<span class="material-symbols-outlined">tune</span>
+</button>
+<button aria-label="history" class="hover:text-slate-600 dark:hover:text-slate-300 transition-colors active:scale-95 duration-200">
+<span class="material-symbols-outlined">history</span>
+</button>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="max-w-container-max mx-auto px-gutter pt-stack-lg pb-section-gap">
+<!-- Filters Row -->
+<section class="flex flex-col md:flex-row justify-between items-start md:items-center mb-stack-lg gap-stack-md">
+<!-- Type Chips -->
+<div class="flex flex-wrap gap-stack-sm">
+<button class="px-4 py-2 rounded-full border border-outline text-on-surface font-chip-text text-chip-text hover:bg-surface-variant transition-colors">All Types</button>
+<button class="px-4 py-2 rounded-full bg-[#EE8130] text-white border-none font-chip-text text-chip-text shadow-sm">Fire</button>
+<button class="px-4 py-2 rounded-full border border-outline text-on-surface font-chip-text text-chip-text hover:bg-surface-variant transition-colors">Water</button>
+<button class="px-4 py-2 rounded-full border border-outline text-on-surface font-chip-text text-chip-text hover:bg-surface-variant transition-colors">Grass</button>
+<button class="px-4 py-2 rounded-full border border-outline text-on-surface font-chip-text text-chip-text hover:bg-surface-variant transition-colors">Electric</button>
+</div>
+<!-- Gen & Sort Controls -->
+<div class="flex items-center gap-stack-md w-full md:w-auto">
+<div class="relative">
+<select class="appearance-none bg-surface-container-lowest border border-outline-variant rounded-lg pl-4 pr-10 py-2 text-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-primary shadow-sm cursor-pointer">
+<option>Gen I (Kanto)</option>
+<option>Gen II (Johto)</option>
+<option>Gen III (Hoenn)</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-on-surface-variant">expand_more</span>
+</div>
+<div class="relative">
+<select class="appearance-none bg-surface-container-lowest border border-outline-variant rounded-lg pl-4 pr-10 py-2 text-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-primary shadow-sm cursor-pointer">
+<option>Sort: Number</option>
+<option>Sort: A-Z</option>
+<option>Sort: Highest Stat</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-on-surface-variant">sort</span>
+</div>
+</div>
+</section>
+<!-- Pokedex Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-gutter mt-12">
+<!-- Card 1 -->
+<article class="bg-surface-container-lowest rounded-2xl p-6 shadow-[0_4px_12px_rgba(0,0,0,0.05)] hover:shadow-[0_12px_24px_rgba(0,0,0,0.08)] transition-shadow duration-300 relative group cursor-pointer border border-outline-variant/30 flex flex-col items-center">
+<div class="absolute top-4 left-6 text-outline font-label-caps text-label-caps">#001</div>
+<div class="w-32 h-32 mb-4 -mt-12 z-10 relative">
+<img alt="Bulbasaur" class="w-full h-full object-contain drop-shadow-md group-hover:-translate-y-2 transition-transform duration-300" data-alt="3d render of a cute green dinosaur-like creature with a plant bulb on its back, soft lighting, clean white background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCGuIDA_BEiyDgEs3JDlEJBwl4gyFSFfRBqraMhmDn8cKTHZSTu6y7eA0kr0BCcYRBTITUjsraVq1yZxIoks6j6CwlAC9qApsSmVrL1ZuWGG9Bs6ZkI4rYRVby4tmECrbJLITQJTUi8ETblBil-KpKnDcne2OTSa6a6viTcnno-E8yZ0VvLuOc6-n6wPaPRf680iTSSEuhYbApWBhu_xLcZ-SelcL6eooMqhgXG5loMqm94UHNFCbwr2Xn46d4VYfZFrZtgcMwrTw"/>
+</div>
+<h2 class="font-h2 text-h2 text-on-surface mb-stack-sm text-center">Bulbasaur</h2>
+<div class="flex gap-2 justify-center w-full">
+<span class="px-3 py-1 rounded-full bg-[#7AC74C] text-white font-chip-text text-[10px] uppercase tracking-wider">Grass</span>
+<span class="px-3 py-1 rounded-full bg-[#A33EA1] text-white font-chip-text text-[10px] uppercase tracking-wider">Poison</span>
+</div>
+</article>
+<!-- Card 2 -->
+<article class="bg-surface-container-lowest rounded-2xl p-6 shadow-[0_4px_12px_rgba(0,0,0,0.05)] hover:shadow-[0_12px_24px_rgba(0,0,0,0.08)] transition-shadow duration-300 relative group cursor-pointer border border-outline-variant/30 flex flex-col items-center">
+<div class="absolute top-4 left-6 text-outline font-label-caps text-label-caps">#004</div>
+<div class="w-32 h-32 mb-4 -mt-12 z-10 relative">
+<img alt="Charmander" class="w-full h-full object-contain drop-shadow-md group-hover:-translate-y-2 transition-transform duration-300" data-alt="3d render of a cute orange bipedal lizard creature with a flame on its tail, soft lighting, clean white background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAzu0N8gIMurZAdc6HdWitzwBC02jBlGDogp3BhW7sJzxodGO6n69xnQxn9_wr6gjtrpGjMgQ9DHupxGkqaOE7aVOQ-UhBrhRwhS-3efZdamc14gep1jY8la1BNVh6vgJFk1CwnAsfv2dUpp7VtcoWcUWyKoxEG1HZ0VtENae5MLSEavsNeAXQ1kG4FYrhq0RBlr2ihFJmsfnnAf9MmsnrbrN9yqA0AbrrBjrwLX2CK5jqWQhUMejFS7-FjpJ-P_xcQeZIvpNrHkg"/>
+</div>
+<h2 class="font-h2 text-h2 text-on-surface mb-stack-sm text-center">Charmander</h2>
+<div class="flex gap-2 justify-center w-full">
+<span class="px-3 py-1 rounded-full bg-[#EE8130] text-white font-chip-text text-[10px] uppercase tracking-wider">Fire</span>
+</div>
+</article>
+<!-- Card 3 -->
+<article class="bg-surface-container-lowest rounded-2xl p-6 shadow-[0_4px_12px_rgba(0,0,0,0.05)] hover:shadow-[0_12px_24px_rgba(0,0,0,0.08)] transition-shadow duration-300 relative group cursor-pointer border border-outline-variant/30 flex flex-col items-center">
+<div class="absolute top-4 left-6 text-outline font-label-caps text-label-caps">#007</div>
+<div class="w-32 h-32 mb-4 -mt-12 z-10 relative">
+<img alt="Squirtle" class="w-full h-full object-contain drop-shadow-md group-hover:-translate-y-2 transition-transform duration-300" data-alt="3d render of a cute blue bipedal turtle creature, soft lighting, clean white background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAMzy0uQkIjAA8IH8LosK7drcTzFeK5v0JQemlof69foeFjT8HxiPM8J1lXQlxoQ7Tv7hvUazhytHif5vwP2D5Rztv5wORql4RDZHxEPjpVN_CiI7BGgHA5D8tMb5UfvtNjkF81G55u0iu45vCGzKSQF-OCmEXkFsUol8hJqC7qUqckEHy6xwqYM_WGCiy7ZeRcAjrgb5nFlmyE_t57B0rLKo5g3LaH84xfShDa5Fiei-KZTWCdIHxXvOQxHxy4UtHDbBml1avJ1Q"/>
+</div>
+<h2 class="font-h2 text-h2 text-on-surface mb-stack-sm text-center">Squirtle</h2>
+<div class="flex gap-2 justify-center w-full">
+<span class="px-3 py-1 rounded-full bg-[#6390F0] text-white font-chip-text text-[10px] uppercase tracking-wider">Water</span>
+</div>
+</article>
+<!-- Card 4 -->
+<article class="bg-surface-container-lowest rounded-2xl p-6 shadow-[0_4px_12px_rgba(0,0,0,0.05)] hover:shadow-[0_12px_24px_rgba(0,0,0,0.08)] transition-shadow duration-300 relative group cursor-pointer border border-outline-variant/30 flex flex-col items-center">
+<div class="absolute top-4 left-6 text-outline font-label-caps text-label-caps">#025</div>
+<div class="w-32 h-32 mb-4 -mt-12 z-10 relative">
+<img alt="Pikachu" class="w-full h-full object-contain drop-shadow-md group-hover:-translate-y-2 transition-transform duration-300" data-alt="3d render of a cute yellow electric mouse creature with long ears, soft lighting, clean white background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAAboEnH4Y2pDo6RdO__WF-nk1bX4iFyZRWBfoBSnBX6U3zsSHx9feI3zbnl-D0Fdz0IQ2svQqok_Awc3gyjsMSlaUbh2e0nW4eSbiNZLwOITaD6cYAsYaQ3jhbNZsofPnwoDD9ItwLn8xQcVMjvjfinrj4d5TyBildMuqCMsxDMZO-c_Qblwvqp1NN90ca_eeRRYrDPeYeqR5wIKOteo_BMvWJTa5uvbkxef4Q_Hr48tXTuXoqRT_sGLCO9iR1QasHBM_6BBfk2w"/>
+</div>
+<h2 class="font-h2 text-h2 text-on-surface mb-stack-sm text-center">Pikachu</h2>
+<div class="flex gap-2 justify-center w-full">
+<span class="px-3 py-1 rounded-full bg-[#F7D02C] text-[#1A1A2E] font-chip-text text-[10px] uppercase tracking-wider">Electric</span>
+</div>
+</article>
+<!-- Card 5 -->
+<article class="bg-surface-container-lowest rounded-2xl p-6 shadow-[0_4px_12px_rgba(0,0,0,0.05)] hover:shadow-[0_12px_24px_rgba(0,0,0,0.08)] transition-shadow duration-300 relative group cursor-pointer border border-outline-variant/30 flex flex-col items-center">
+<div class="absolute top-4 left-6 text-outline font-label-caps text-label-caps">#039</div>
+<div class="w-32 h-32 mb-4 -mt-12 z-10 relative">
+<div class="w-full h-full bg-pink-100 rounded-full flex items-center justify-center text-pink-300 drop-shadow-md group-hover:-translate-y-2 transition-transform duration-300">Image</div>
+</div>
+<h2 class="font-h2 text-h2 text-on-surface mb-stack-sm text-center">Jigglypuff</h2>
+<div class="flex gap-2 justify-center w-full">
+<span class="px-3 py-1 rounded-full bg-[#A8A878] text-white font-chip-text text-[10px] uppercase tracking-wider">Normal</span>
+<span class="px-3 py-1 rounded-full bg-[#D685AD] text-white font-chip-text text-[10px] uppercase tracking-wider">Fairy</span>
+</div>
+</article>
+<!-- Card 6 -->
+<article class="bg-surface-container-lowest rounded-2xl p-6 shadow-[0_4px_12px_rgba(0,0,0,0.05)] hover:shadow-[0_12px_24px_rgba(0,0,0,0.08)] transition-shadow duration-300 relative group cursor-pointer border border-outline-variant/30 flex flex-col items-center">
+<div class="absolute top-4 left-6 text-outline font-label-caps text-label-caps">#094</div>
+<div class="w-32 h-32 mb-4 -mt-12 z-10 relative">
+<div class="w-full h-full bg-purple-100 rounded-full flex items-center justify-center text-purple-300 drop-shadow-md group-hover:-translate-y-2 transition-transform duration-300">Image</div>
+</div>
+<h2 class="font-h2 text-h2 text-on-surface mb-stack-sm text-center">Gengar</h2>
+<div class="flex gap-2 justify-center w-full">
+<span class="px-3 py-1 rounded-full bg-[#705898] text-white font-chip-text text-[10px] uppercase tracking-wider">Ghost</span>
+<span class="px-3 py-1 rounded-full bg-[#A33EA1] text-white font-chip-text text-[10px] uppercase tracking-wider">Poison</span>
+</div>
+</article>
+<!-- Card 7 -->
+<article class="bg-surface-container-lowest rounded-2xl p-6 shadow-[0_4px_12px_rgba(0,0,0,0.05)] hover:shadow-[0_12px_24px_rgba(0,0,0,0.08)] transition-shadow duration-300 relative group cursor-pointer border border-outline-variant/30 flex flex-col items-center">
+<div class="absolute top-4 left-6 text-outline font-label-caps text-label-caps">#133</div>
+<div class="w-32 h-32 mb-4 -mt-12 z-10 relative">
+<div class="w-full h-full bg-amber-100 rounded-full flex items-center justify-center text-amber-300 drop-shadow-md group-hover:-translate-y-2 transition-transform duration-300">Image</div>
+</div>
+<h2 class="font-h2 text-h2 text-on-surface mb-stack-sm text-center">Eevee</h2>
+<div class="flex gap-2 justify-center w-full">
+<span class="px-3 py-1 rounded-full bg-[#A8A878] text-white font-chip-text text-[10px] uppercase tracking-wider">Normal</span>
+</div>
+</article>
+<!-- Card 8 -->
+<article class="bg-surface-container-lowest rounded-2xl p-6 shadow-[0_4px_12px_rgba(0,0,0,0.05)] hover:shadow-[0_12px_24px_rgba(0,0,0,0.08)] transition-shadow duration-300 relative group cursor-pointer border border-outline-variant/30 flex flex-col items-center">
+<div class="absolute top-4 left-6 text-outline font-label-caps text-label-caps">#143</div>
+<div class="w-32 h-32 mb-4 -mt-12 z-10 relative">
+<div class="w-full h-full bg-slate-200 rounded-full flex items-center justify-center text-slate-400 drop-shadow-md group-hover:-translate-y-2 transition-transform duration-300">Image</div>
+</div>
+<h2 class="font-h2 text-h2 text-on-surface mb-stack-sm text-center">Snorlax</h2>
+<div class="flex gap-2 justify-center w-full">
+<span class="px-3 py-1 rounded-full bg-[#A8A878] text-white font-chip-text text-[10px] uppercase tracking-wider">Normal</span>
+</div>
+</article>
+</div>
+<!-- Load More -->
+<div class="flex justify-center mt-12">
+<button class="px-8 py-3 rounded-full bg-primary-container text-on-primary font-chip-text text-chip-text shadow-md hover:bg-primary transition-colors">
+                Load More
+            </button>
+</div>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden bg-white dark:bg-slate-900 font-inter text-[10px] font-medium tracking-wide fixed bottom-0 w-full z-50 rounded-t-2xl border-t border-slate-100 dark:border-slate-800 shadow-[0_-4px_12px_rgba(0,0,0,0.05)] flex justify-around items-center h-16 px-4 pb-safe">
+<a class="flex flex-col items-center justify-center text-slate-900 dark:text-white scale-110 active:scale-90 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined icon-fill mb-1">capture</span>
+<span>Pokedex</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-600 hover:text-slate-600 dark:hover:text-slate-300 active:scale-90 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined mb-1">groups</span>
+<span>Teams</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-600 hover:text-slate-600 dark:hover:text-slate-300 active:scale-90 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined mb-1">map</span>
+<span>Regions</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-600 hover:text-slate-600 dark:hover:text-slate-300 active:scale-90 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined mb-1">settings</span>
+<span>Settings</span>
+</a>
+</nav>
+</body></html>

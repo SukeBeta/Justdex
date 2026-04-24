@@ -1,2 +1,5 @@
-# IDE files
-.idea/
+node_modules
+dist
+.DS_Store
+*.local
+*.tsbuildinfo
