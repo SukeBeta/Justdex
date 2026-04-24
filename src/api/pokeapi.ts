@@ -74,16 +74,25 @@ async function fetchAbilities(
   return results
 }
 
+const FLAVOR_LANGS = ['en', 'ja', 'zh-hans', 'ko', 'fr', 'de']
+
 async function fetchSpecies(speciesUrl: string): Promise<PokemonSpecies | null> {
   try {
     const res = await fetch(speciesUrl)
     const data = await res.json()
-    const flavorEntry = data.flavor_text_entries?.find(
-      (e: { language: { name: string } }) => e.language.name === 'en'
-    )
+
+    const flavorTexts: Record<string, string> = {}
+    for (const entry of data.flavor_text_entries ?? []) {
+      const lang: string = entry.language.name
+      if (FLAVOR_LANGS.includes(lang) && !flavorTexts[lang]) {
+        flavorTexts[lang] = entry.flavor_text?.replace(/\f|\n/g, ' ') ?? ''
+      }
+    }
+
     const genMatch = data.generation?.url?.match(/\/(\d+)\/$/)
     return {
-      flavorText: flavorEntry?.flavor_text?.replace(/\f|\n/g, ' ') ?? '',
+      flavorText: flavorTexts['en'] ?? '',
+      flavorTexts,
       eggGroups: data.egg_groups?.map((g: { name: string }) =>
         g.name.replace(/-/g, ' ')
       ) ?? [],

@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import type { EvolutionNode } from '../types/pokemon'
+import { useI18n } from '../contexts/LocaleContext'
 
 export default function EvolutionChain({
   root,
@@ -42,11 +43,14 @@ function collectPaths(node: EvolutionNode): EvolutionNode[][] {
 }
 
 function EvolutionPath({ stages, currentId }: { stages: EvolutionNode[]; currentId: number }) {
+  const { pn } = useI18n()
+
   return (
     <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4">
       {stages.map((stage, i) => {
         const isCurrent = stage.id === currentId
         const sizeClass = isCurrent ? 'w-24 h-24 sm:w-28 sm:h-28' : 'w-18 h-18 sm:w-22 sm:h-22'
+        const displayName = pn(stage.name)
 
         return (
           <div key={stage.id} className="flex flex-col sm:flex-row items-center gap-2 sm:gap-3">
@@ -75,7 +79,7 @@ function EvolutionPath({ stages, currentId }: { stages: EvolutionNode[]; current
                 }`}
               >
                 <img
-                  alt={stage.name}
+                  alt={displayName}
                   src={stage.spriteUrl}
                   className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-300"
                   loading="lazy"
@@ -86,7 +90,7 @@ function EvolutionPath({ stages, currentId }: { stages: EvolutionNode[]; current
                   #{String(stage.id).padStart(3, '0')}
                 </p>
                 <p className={`font-semibold text-chip-text text-on-surface capitalize ${isCurrent ? 'font-bold' : ''}`}>
-                  {stage.name}
+                  {displayName}
                 </p>
               </div>
             </Link>

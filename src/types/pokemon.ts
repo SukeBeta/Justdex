@@ -34,6 +34,7 @@ export interface PokemonAbility {
 
 export interface PokemonSpecies {
   flavorText: string
+  flavorTexts: Record<string, string>
   eggGroups: string[]
   generation: number
 }
