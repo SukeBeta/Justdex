@@ -120,6 +120,13 @@ export default function Detail() {
                   {pokemon.species.flavorText}
                 </p>
               )}
+              <Link
+                to={`/compare?a=${encodeURIComponent(pokemon.name)}`}
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-outline-variant text-on-surface font-semibold text-chip-text hover:bg-surface-variant transition-colors mt-2"
+              >
+                <span className="material-symbols-outlined text-[18px]">compare_arrows</span>
+                Compare
+              </Link>
             </div>
           </div>
         </div>

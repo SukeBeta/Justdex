@@ -3,6 +3,7 @@ import Layout from './components/Layout'
 import Home from './pages/Home'
 import Detail from './pages/Detail'
 import TeamBuilder from './pages/TeamBuilder'
+import Compare from './pages/Compare'
 
 export default function App() {
   return (
@@ -11,6 +12,7 @@ export default function App() {
         <Route index element={<Home />} />
         <Route path="pokemon/:idOrName" element={<Detail />} />
         <Route path="team" element={<TeamBuilder />} />
+        <Route path="compare" element={<Compare />} />
       </Route>
     </Routes>
   )
